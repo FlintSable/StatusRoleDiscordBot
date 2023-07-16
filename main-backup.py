@@ -1,4 +1,4 @@
-import discord
+import nextcord
 import os
 from dotenv import load_dotenv, dotenv_values
 
@@ -7,7 +7,7 @@ load_dotenv()
 
 from flask import Flask
 
-client = discord.Client(intents = discord.Intents.all())
+client = nextcord.Client(intents = nextcord.Intents.all())
 
 server_id = 1090432408492462222
 
@@ -21,7 +21,7 @@ async def on_ready():
 async def on_presence_update(before, after):
     print("running again")
     guild = client.get_guild(server_id)
-    role = discord.utils.find(lambda r: r.name == 'custom_role', guild.roles)
+    role = nextcord.utils.find(lambda r: r.name == 'custom_role', guild.roles)
     print(role)
     print(str(after.name))
     # if str(after.activity) == custom_status:
