@@ -7,26 +7,36 @@ class RoleChange(commands.Cog):
     
     def __init__(self, client):
         print('cog initiated')
-        self._server_id = 1090432408492462222
+        # self._server_id = 1090432408492462222
+        self._server_id = 1123332194245546034
+
         self._client = client
         self._guild = client.get_guild(self._server_id)
-        print(client.get_guild(1090432408492462222))
+        # print(client.get_guild(1090432408492462222))
     
 
     # event
     @commands.Cog.listener()
     async def on_presence_update(self, before, after):
         print("custom listener")
+        print(f'username: {after.name}')
         # guild = Client.get_guild(self._server_id)
-        print(after.activity)
-        role = nextcord.utils.find(lambda r: r.name == 'custom_role', self._client.get_guild(1090432408492462222).roles)
-        print(role)
-        if role not in before.roles and str(after.activity) == "https://discord.gg/hNGt755M":
+        print(f'current activity status: ;{after.activity}')
+        # role = nextcord.utils.find(lambda r: r.name == 'custom_role', self._client.get_guild(1090432408492462222).roles)
+        role = nextcord.utils.find(lambda r: r.name == 'custom_role', self._client.get_guild(1123332194245546034).roles)
+
+
+        # print(role)
+        if role not in after.roles and "https://discord.gg/hNGt755M" in str(after.activity):
             print("doesn't have role but has requirement custom status")
             await after.add_roles(role)
+        elif role in after.roles and "https://discord.gg/hNGt755M" not in str(after.activity):
+            print("remove custom role")
+            await after.remove_roles(role)
+
             
         print("\n")
-        await asyncio.sleep(2)
+        await asyncio.sleep(0)
 
 
 

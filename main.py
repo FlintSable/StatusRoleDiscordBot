@@ -3,14 +3,19 @@ from nextcord.ext import commands
 import os
 from dotenv import load_dotenv, dotenv_values
 load_dotenv()
-from flask import Flask
+
+
 
 
 # intents = nextcord.Intents.default()
 intents = nextcord.Intents.all()
 intents.members = True
 intents.presences = True
-server_id = 1090432408492462222
+# test server id
+# server_id = 1090432408492462222
+# main server id
+server_id = 1123332194245546034
+
 
 
 client = commands.Bot(command_prefix = 'x', intents = intents)
